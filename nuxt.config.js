@@ -141,6 +141,7 @@ module.exports = {
     extend(config, ctx) {}
   },
   generate: {
+    exclude: [/\w+\/timeline/],
     async routes() {
       // console.log(this.$i18n.locales)
       const { data } = await axios.get(
