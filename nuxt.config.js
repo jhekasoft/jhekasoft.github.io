@@ -147,7 +147,7 @@ module.exports = {
         { params: { reverse: '0' } }
       )
 
-      return [{ route: '/timeline', payload: developerTimelineData }]
+      return [{ route: '/uk/timeline', payload: developerTimelineData }]
     }
   }
 }
