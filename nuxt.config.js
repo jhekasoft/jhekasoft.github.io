@@ -1,7 +1,12 @@
+import axios from 'axios'
 const colors = require('vuetify/es5/util/colors').default
+require('dotenv').config()
 
 module.exports = {
   mode: 'universal',
+  env: {
+    apiBaseUrl: process.env.API_BASE_URL || ''
+  },
   /*
    ** Headers of the page
    */
@@ -49,7 +54,8 @@ module.exports = {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     // '@nuxtjs/eslint-module',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/dotenv'
   ],
   /*
    ** Nuxt.js modules
@@ -133,5 +139,15 @@ module.exports = {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  generate: {
+    async routes() {
+      const { developerTimelineData } = await axios.get(
+        process.env.API_BASE_URL + 'developer-timeline',
+        { params: { reverse: '0' } }
+      )
+
+      return [{ route: '/timeline', payload: developerTimelineData }]
+    }
   }
 }

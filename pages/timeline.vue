@@ -37,9 +37,11 @@ export default {
   data: () => ({
     isMount: false
   }),
-  async asyncData({ params }) {
+  async asyncData({ params, error, payload }) {
+    if (payload) return { list: payload.data }
+
     const { data } = await axios.get(
-      'http://localhost:3001/developer-timeline',
+      process.env.apiBaseUrl + 'developer-timeline',
       { params: { reverse: '0' } }
     )
     return { list: data.data }
