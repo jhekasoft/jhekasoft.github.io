@@ -142,12 +142,12 @@ module.exports = {
   },
   generate: {
     async routes() {
-      const { developerTimelineData } = await axios.get(
+      const { data } = await axios.get(
         process.env.API_BASE_URL + 'developer-timeline',
         { params: { reverse: '0' } }
       )
 
-      return [{ route: '/uk/timeline', payload: developerTimelineData }]
+      return [{ route: '/uk/timeline', payload: data }]
     }
   }
 }
