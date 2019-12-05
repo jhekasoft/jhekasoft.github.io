@@ -38,6 +38,7 @@ export default {
     isMount: false
   }),
   async asyncData({ params, error, payload }) {
+    console.log(payload)
     if (payload) return { list: payload.data }
 
     const { data } = await axios.get(
