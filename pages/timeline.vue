@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex>
-    <h1>Developer timeline</h1>
+      <h1>Developer timeline</h1>
       <v-timeline align-top :dense="isMount && $vuetify.breakpoint.smAndDown">
         <v-timeline-item
           v-for="(item, i) in items"
@@ -29,115 +29,116 @@ export default {
       {
         color: 'teal darken-4',
         title: '2003',
-        text: '<strong class="teal--text">Sinclair BASIC</strong>, ZX Spectrum<br>' +
-              'MS Windows<br>' +
-              '<strong class="teal--text">Turbo Pascal</strong>, MS DOS',
+        text:
+          '<strong class="teal--text">Sinclair BASIC</strong>, ZX Spectrum<br>' +
+          'MS Windows<br>' +
+          '<strong class="teal--text">Turbo Pascal</strong>, MS DOS'
       },
       {
         color: 'teal darken-4',
         icon: 'mdi-book-variant',
         title: '2004',
-        text: '<strong class="teal--text">Visual Basic</strong>, Windows<br>' +
-              '<strong class="teal--text">Borland Delphi</strong><br>' +
-              'Borland Database Engine (СУБД)',
+        text:
+          '<strong class="teal--text">Visual Basic</strong>, Windows<br>' +
+          '<strong class="teal--text">Borland Delphi</strong><br>' +
+          'Borland Database Engine (СУБД)'
       },
       {
         color: 'teal darken-4',
         icon: 'mdi-airballoon',
         title: '2005',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal darken-3',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal darken-3',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal darken-3',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal darken-2',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal darken-2',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal darken-2',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal darken-1',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal darken-1',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal darken-1',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal lighten-1',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       },
       {
         color: 'teal lighten-1',
         icon: 'mdi-buffer',
         title: '2006',
-        text: 'Test',
+        text: 'Test'
       }
-    ],
+    ]
   }),
   mounted() {
-    this.isMount = true;
+    this.isMount = true
   }
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
