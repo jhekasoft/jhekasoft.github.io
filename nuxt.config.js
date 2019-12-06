@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 const colors = require('vuetify/es5/util/colors').default
 require('dotenv').config()
 
@@ -139,22 +139,22 @@ module.exports = {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
-  },
-  generate: {
-    exclude: [/\w+\/timeline/],
-    async routes() {
-      // console.log(this.$i18n.locales)
-      const { data } = await axios.get(
-        process.env.API_BASE_URL + 'developer-timeline',
-        { params: { reverse: '0' } }
-      )
-      console.log(data)
-
-      return [
-        { route: '/en/timeline', payload: data },
-        { route: '/uk/timeline', payload: data },
-        { route: '/ru/timeline', payload: data }
-      ]
-    }
   }
+  // generate: {
+  //   exclude: [/\w+\/timeline/],
+  //   async routes() {
+  //     // console.log(this.$i18n.locales)
+  //     const { data } = await axios.get(
+  //       process.env.API_BASE_URL + 'developer-timeline',
+  //       { params: { reverse: '0' } }
+  //     )
+  //     console.log(data)
+
+  //     return [
+  //       { route: '/en/timeline', payload: data },
+  //       { route: '/uk/timeline', payload: data },
+  //       { route: '/ru/timeline', payload: data }
+  //     ]
+  //   }
+  // }
 }
