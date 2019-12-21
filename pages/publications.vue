@@ -43,10 +43,7 @@ export default {
     // console.log(payload)
     if (payload) return { list: payload.data }
 
-    const { data } = await axios.get(
-      process.env.apiBaseUrl + 'cv',
-      { params: { reverse: '0' } }
-    )
+    const { data } = await axios.get(process.env.apiBaseUrl + 'cv')
     return { data: data.data }
   },
   mounted() {

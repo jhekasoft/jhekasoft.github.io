@@ -15,7 +15,7 @@
         Web Developer. Kyiv, Ukraine. 🇺🇦
       </p>
       <p>
-        Technologies that I preffer (technology stack):
+        Technologies that I prefer (technology stack):
       </p>
       <div class="text-xs-center">
         <v-chip v-for="(item, index) in technologies" :key="index" class="ma-1">
