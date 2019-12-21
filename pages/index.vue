@@ -51,6 +51,7 @@ export default {
       { title: 'Nuxt.js', icon: 'mdi-nuxt', color: '#62C68F' },
       { title: 'Go', icon: 'mdi-language-go', color: '#49ACD7' },
       { title: 'Scala', icon: null, color: '#49ACD7' },
+      { title: 'Flutter', icon: null, color: '#49ACD7' },
       { title: 'GNU/Linux', icon: 'mdi-linux', color: '#F7BD33' }
     ],
     usedTechnologies: [

@@ -1,9 +1,9 @@
 <template>
   <v-layout>
     <v-flex>
-      <h1>CV</h1>
+      <h1 class="ccc666">CV</h1>
       <div v-if="isMount">
-        <h2>Experience</h2>
+        <h2 class="text-md-center">Experience</h2>
         <v-timeline align-top :dense="isMount && $vuetify.breakpoint.smAndDown">
           <v-timeline-item
             v-for="(item, i) in data.experience"
@@ -12,13 +12,34 @@
             fill-dot
           >
             <v-card>
-              <v-card-title class="headline">{{ item.startYear }}-{{ item.endYear }}</v-card-title>
+              <v-card-title class="headline headline-mono">
+                <template v-if="item.endYear == null">
+                  {{ item.startYear }} – Present
+                </template>
+                <template
+                  v-else-if="item.startYear == item.endYear || item.endYear == null"
+                >
+                  {{ item.startYear }}
+                </template>
+                <template v-else>
+                  {{ item.startYear }} – {{ item.endYear }}
+                </template>
+              </v-card-title>
               <v-card-text>
                 <div style="font-size: 1.4em; line-height: 1.4em;">
-                  {{ item.title }}
+                  <a
+                    v-if="item.companyUrl"
+                    :href="item.companyUrl"
+                    target="__blank"
+                  >
+                    {{ item.company }}
+                  </a>
+                  <span v-else class="teal--text">
+                    {{ item.company }}
+                  </span>
                 </div>
                 <div>
-                  <a :href="item.companyUrl" target="__blank">{{ item.company }}</a>
+                  <strong>{{ item.title }}</strong>
                 </div>
                 <div>
                   {{ item.location }}
@@ -28,7 +49,7 @@
           </v-timeline-item>
         </v-timeline>
 
-        <h2>Education</h2>
+        <h2 class="text-md-center">Education</h2>
         <v-timeline align-top :dense="isMount && $vuetify.breakpoint.smAndDown">
           <v-timeline-item
             v-for="(item, i) in data.education"
@@ -37,16 +58,19 @@
             fill-dot
           >
             <v-card>
-              <v-card-title class="headline">{{ item.startYear }}-{{ item.endYear }}</v-card-title>
+              <v-card-title class="headline headline-mono">{{ item.startYear }} – {{ item.endYear }}</v-card-title>
               <v-card-text>
                 <div style="font-size: 1.4em; line-height: 1.4em;">
                   {{ item.school }}
                 </div>
                 <div>
-                  {{ item.degree }}
+                  <strong>{{ item.degree }}</strong>
                 </div>
                 <div>
                   {{ item.fieldOfStudy }}
+                </div>
+                <div>
+                  {{ item.location }}
                 </div>
               </v-card-text>
             </v-card>

@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans&display=swap&subset=cyrillic,cyrillic-ext');
+
 body {
     background-color: #212121;
+}
+
+.v-application, .v-application .headline.headline-mono {
+    font-family: 'Fira Sans', sans-serif !important;
 }

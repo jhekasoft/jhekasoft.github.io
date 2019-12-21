@@ -10,7 +10,7 @@
           fill-dot
         >
           <v-card>
-            <v-card-title class="headline">{{ item.year }}</v-card-title>
+            <v-card-title class="headline headline-mono">{{ item.year }}</v-card-title>
             <v-card-text style="font-size: 1.4em; line-height: 1.4em;">
               <div v-for="(descItem, j) in item.desc" :key="j">
                 <span

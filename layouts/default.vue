@@ -8,6 +8,7 @@
       app
       color="teal darken-4"
       dark
+      fixed
     >
       <v-list-item>
         <v-list-item-avatar>
@@ -116,7 +117,7 @@ export default {
           to: 'timeline'
         },
         {
-          icon: 'mdi-information',
+          icon: 'mdi-contacts',
           title: 'Contact',
           to: 'contact'
         }
