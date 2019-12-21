@@ -114,6 +114,11 @@ export default {
           icon: 'mdi-timeline',
           title: 'Timeline',
           to: 'timeline'
+        },
+        {
+          icon: 'mdi-information',
+          title: 'Contact',
+          to: 'contact'
         }
         // {
         //   icon: 'mdi-newspaper',

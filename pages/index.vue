@@ -58,12 +58,18 @@ export default {
       { title: 'Laravel', icon: 'mdi-laravel', color: '#EA4D39' },
       { title: 'Symfony', icon: 'mdi-symfony', color: '#000000' },
       { title: 'Zend Framework', icon: 'mdi-zend', color: '#68B604' },
-      { title: 'Python', icon: 'mdi-language-python', color: '#3773A5' },
+      { title: 'Python', icon: 'mdi-language-python', color: '#F7BD33' },
       { title: 'C++', icon: 'mdi-language-cpp', color: '#15599C' },
       { title: 'C', icon: 'mdi-language-c', color: '#A8B9CC' },
       { title: 'Lua', icon: 'mdi-language-lua', color: '#0A2180' }
     ]
-  })
+  }),
+  head() {
+    return {
+      title: 'jhekasoft',
+      titleTemplate: null
+    }
+  }
 }
 </script>
 

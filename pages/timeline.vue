@@ -37,26 +37,31 @@ export default {
   data: () => ({
     isMount: false
   }),
-  computed: {
-    list() {
-      return this.$store.state.timeline.timeline
-    }
-  },
-  // async asyncData({ params, error, payload }) {
-  //   // console.log(payload)
-  //   if (payload) return { list: payload.data }
-
-  //   const { data } = await axios.get(
-  //     process.env.apiBaseUrl + 'developer-timeline',
-  //     { params: { reverse: '0' } }
-  //   )
-  //   return { list: data.data }
+  // computed: {
+  //   list() {
+  //     return this.$store.state.timeline.timeline
+  //   }
   // },
-  async fetch({ store, params }) {
-    await store.dispatch('timeline/getTimeline')
+  async asyncData({ params, error, payload }) {
+    // console.log(payload)
+    if (payload) return { list: payload.data }
+
+    const { data } = await axios.get(
+      process.env.apiBaseUrl + 'developer-timeline',
+      { params: { reverse: '0' } }
+    )
+    return { list: data.data }
   },
+  // async fetch({ store, params }) {
+  //   await store.dispatch('timeline/getTimeline')
+  // },
   mounted() {
     this.isMount = true
+  },
+  head() {
+    return {
+      title: 'Developer timeline'
+    }
   }
 }
 </script>
