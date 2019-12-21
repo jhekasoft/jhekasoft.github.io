@@ -2,12 +2,12 @@
   <v-layout>
     <v-flex class="text-center">
       <h1>Jhekasoft</h1>
-      <h2>Eugen Efremov</h2>
+      <h2>Eugene Efremov</h2>
 
       <v-avatar :tile="false" size="300px" color="grey lighten-4" class="mb-4 mt-4">
         <img
           src="https://avatars2.githubusercontent.com/u/1534306?s=460&v=4"
-          alt="Eugen Efremov"
+          alt="Eugene Efremov"
         />
       </v-avatar>
 

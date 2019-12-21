@@ -61,7 +61,11 @@
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app dark color="teal darken-3">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title
+        class="toolbar-title"
+        @click="$router.push({ path: '/' })"
+        v-text="title"
+      />
       <v-spacer />
       <v-btn icon :href="about.telegramUrl" target="_blank" title="Telegram">
         <v-icon>mdi-telegram</v-icon>
@@ -103,18 +107,28 @@ export default {
       items: [
         {
           icon: 'mdi-home',
-          title: 'Main',
+          title: 'About',
           to: 'index'
         },
         {
-          icon: 'mdi-file-account',
-          title: 'CV',
-          to: 'cv'
+          icon: 'mdi-laptop',
+          title: 'Experience',
+          to: 'experience'
         },
         {
           icon: 'mdi-timeline',
           title: 'Timeline',
           to: 'timeline'
+        },
+        {
+          icon: 'mdi-newspaper',
+          title: 'Publications',
+          to: 'publications'
+        },
+        {
+          icon: 'mdi-open-source-initiative',
+          title: 'Own projects',
+          to: 'own-projects'
         },
         {
           icon: 'mdi-contacts',
@@ -143,7 +157,7 @@ export default {
       title: 'Jhekasoft',
       about: {
         nickname: 'jhekasoft',
-        name: 'Eugen Efremov',
+        name: 'Eugene Efremov',
         avatarUrl: 'https://avatars2.githubusercontent.com/u/1534306?s=460&v=4',
         gitHubUrl: 'https://github.com/jhekasoft',
         telegramUrl: 'https://t.me/jhekasoft'
@@ -165,3 +179,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.toolbar-title {
+  cursor: pointer;
+}
+</style>

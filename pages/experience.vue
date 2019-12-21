@@ -1,9 +1,8 @@
 <template>
   <v-layout>
     <v-flex>
-      <h1 class="ccc666">CV</h1>
+      <h1 class="ccc666">Experience</h1>
       <div v-if="isMount">
-        <h2 class="text-md-center">Experience</h2>
         <v-timeline align-top :dense="isMount && $vuetify.breakpoint.smAndDown">
           <v-timeline-item
             v-for="(item, i) in data.experience"
@@ -103,7 +102,7 @@ export default {
   },
   head() {
     return {
-      title: 'CV'
+      title: 'Experience'
     }
   }
 }
