@@ -72,7 +72,7 @@ module.exports = {
    */
   axios: {},
   i18n: {
-    strategy: 'prefix',
+    strategy: 'prefix_except_default',
     // rootRedirect: { name: 'index' },
     detectBrowserLanguage: {
       useCookie: true,
@@ -94,9 +94,9 @@ module.exports = {
         name: 'English'
       }
     ],
-    defaultLocale: 'ru',
+    defaultLocale: 'en',
     vueI18n: {
-      fallbackLocale: 'ru',
+      fallbackLocale: 'en',
       messages: {
         en: {
           welcome: 'Welcome'

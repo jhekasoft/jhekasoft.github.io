@@ -34,7 +34,7 @@
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
-        <v-divider></v-divider>
+        <!-- <v-divider></v-divider>
         <v-list-group
           prepend-icon="translate"
           :value="false"
@@ -55,13 +55,16 @@
               <v-list-item-title v-text="item.name" />
             </v-list-item-content>
           </v-list-item>
-        </v-list-group>
+        </v-list-group> -->
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app dark color="teal darken-3">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-btn icon :href="about.telegramUrl" target="_blank" title="Telegram">
+        <v-icon>mdi-telegram</v-icon>
+      </v-btn>
       <v-btn icon :href="about.gitHubUrl" target="_blank" title="GitHub">
         <v-icon>mdi-github-circle</v-icon>
       </v-btn>
@@ -84,7 +87,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2013-2019 jhekasoft</span>
+      <span>&copy; 2013-{{ currentYear }} jhekasoft</span>
     </v-footer>
   </v-app>
 </template>
@@ -103,30 +106,30 @@ export default {
           to: 'index'
         },
         {
-          icon: 'mdi-timeline',
-          title: 'Timeline',
-          to: 'timeline'
-        },
-        {
-          icon: 'mdi-newspaper',
-          title: 'Publications',
-          to: 'publications'
-        },
-        {
-          icon: 'mdi-format-list-bulleted',
-          title: 'Projects',
-          to: 'projects'
-        },
-        {
           icon: 'mdi-file-account',
           title: 'CV',
           to: 'cv'
         },
         {
-          icon: 'mdi-information',
-          title: 'About',
-          to: 'about'
-        },
+          icon: 'mdi-timeline',
+          title: 'Timeline',
+          to: 'timeline'
+        }
+        // {
+        //   icon: 'mdi-newspaper',
+        //   title: 'Publications',
+        //   to: 'publications'
+        // },
+        // {
+        //   icon: 'mdi-format-list-bulleted',
+        //   title: 'Projects',
+        //   to: 'projects'
+        // },
+        // {
+        //   icon: 'mdi-information',
+        //   title: 'About',
+        //   to: 'about'
+        // }
       ],
       miniVariant: false,
       right: true,
@@ -136,8 +139,10 @@ export default {
         nickname: 'jhekasoft',
         name: 'Eugen Efremov',
         avatarUrl: 'https://avatars2.githubusercontent.com/u/1534306?s=460&v=4',
-        gitHubUrl: 'https://github.com/jhekasoft'
-      }
+        gitHubUrl: 'https://github.com/jhekasoft',
+        telegramUrl: 'https://t.me/jhekasoft'
+      },
+      currentYear: new Date().getFullYear()
     }
   },
   computed: {
