@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex>
-      <h1 class="ccc666">Experience</h1>
+      <h1>Experience</h1>
       <div v-if="isMount">
         <v-timeline align-top :dense="isMount && $vuetify.breakpoint.smAndDown">
           <v-timeline-item

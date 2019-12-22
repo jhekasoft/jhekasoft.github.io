@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex>
-      <h1 class="ccc666">Own projects</h1>
+      <h1>Own projects</h1>
       <div v-if="isMount">
         <v-container fluid grid-list-md>
           <v-layout row wrap>
@@ -12,7 +12,7 @@
               sm4
             >
               <v-card>
-                <v-img src="https://s.dou.ua/img/announces/Untitled_design-3.png" />
+                <v-img v-if="item.imageUrl" :src="item.imageUrl" />
                 <v-card-title primary-title>
                   <div>
                     <div class="headline">

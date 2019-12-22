@@ -19,7 +19,13 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content:
+          'Eugene Efremov aka Jhekasoft. Web Developer. Kyiv, Ukraine. 🇺🇦'
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: process.env.BASE_URL + '/icon.png'
       },
       {
         name: 'theme-color',

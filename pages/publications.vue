@@ -1,13 +1,13 @@
 <template>
   <v-layout>
     <v-flex>
-      <h1 class="ccc666">Publications</h1>
+      <h1>Publications</h1>
       <div v-if="isMount">
         <v-container fluid grid-list-md>
           <v-layout row wrap>
             <v-flex v-for="(item, i) in data.publications" :key="i" xs12 sm6>
               <v-card>
-                <v-img src="https://s.dou.ua/img/announces/Untitled_design-3.png" />
+                <v-img v-if="item.imageUrl" :src="item.imageUrl" />
                 <v-card-title primary-title>
                   <div>
                     <div class="headline">
