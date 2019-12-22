@@ -77,7 +77,8 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    'nuxt-i18n'
+    'nuxt-i18n',
+    ['@nuxtjs/google-tag-manager', { id: 'GTM-NFF55VC', pageTracking: true }]
   ],
   /*
    ** Axios module configuration
