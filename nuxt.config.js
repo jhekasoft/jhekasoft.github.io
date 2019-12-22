@@ -25,7 +25,7 @@ module.exports = {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: process.env.BASE_URL + '/icon.png'
+        content: process.env.BASE_URL + 'icon.png'
       },
       {
         name: 'theme-color',
