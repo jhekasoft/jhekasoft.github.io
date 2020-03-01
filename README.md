@@ -1,6 +1,6 @@
 # jhekasoft
 
-> My cat&#39;s pajamas Nuxt.js project
+> Site
 
 ## Build Setup
 
@@ -16,6 +16,22 @@ $ npm run build
 $ npm run start
 
 # generate static project
+$ npm run generate
+```
+
+## Generate with local API
+
+1\. Copy API content to the `static/api` directory.
+
+2\. Run dev:
+
+``` bash
+$ npm run dev
+```
+
+3\. Generate:
+
+``` bash
 $ npm run generate
 ```
 
