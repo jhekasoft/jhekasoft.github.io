@@ -17,6 +17,9 @@ $ npm run start
 
 # generate static project
 $ npm run generate
+
+# deploy (after commits)
+$ npm run deploy
 ```
 
 ## Generate with local API
