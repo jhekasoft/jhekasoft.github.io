@@ -26,7 +26,7 @@
                 </v-card-text>
 
                 <v-card-actions>
-                  <v-btn  color="teal darken-3" :href="item.url" target="_blank">Show</v-btn>
+                  <v-btn color="teal darken-3" :href="item.url" target="_blank">Open</v-btn>
                 </v-card-actions>
               </v-card>
             </v-flex>
