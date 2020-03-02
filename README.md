@@ -22,20 +22,38 @@ $ npm run generate
 $ npm run deploy
 ```
 
-## Generate with local API
+## Generate and deploy with local API
 
 1\. Copy API content to the `static/api` directory.
 
-2\. Run dev:
+2\. In `.env` set:
+
+``` markdown
+API_BASE_URL=/api/
+```
+
+3\. Run dev (don't stop):
 
 ``` bash
 $ npm run dev
 ```
 
-3\. Generate:
+4\. Generate and deploy:
 
 ``` bash
-$ npm run generate
+$ npm run generate-and-deploy
+```
+
+5\. In `.env` set:
+
+``` markdown
+API_BASE_URL=https://jhekasoft.github.io/api/
+```
+
+6\. Generate and deploy again:
+
+``` bash
+$ npm run generate-and-deploy
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
