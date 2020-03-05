@@ -45,16 +45,17 @@
 export default {
   data: () => ({
     technologies: [
+      { title: 'TypeScript', icon: 'mdi-language-typescript', color: '#46A5F5' },
       { title: 'JavaScript', icon: 'mdi-language-javascript', color: '#F7DF31' },
       { title: 'node.js', icon: 'mdi-nodejs', color: '#639A58' },
       { title: 'Vue.js', icon: 'mdi-vuejs', color: '#5BB884' },
       { title: 'Nuxt.js', icon: 'mdi-nuxt', color: '#62C68F' },
       { title: 'Go', icon: 'mdi-language-go', color: '#49ACD7' },
-      { title: 'Scala', icon: null, color: '#49ACD7' },
       { title: 'Flutter', icon: null, color: '#49ACD7' },
       { title: 'GNU/Linux', icon: 'mdi-linux', color: '#F7BD33' }
     ],
     usedTechnologies: [
+      { title: 'Scala', icon: null, color: '#49ACD7' },
       { title: 'PHP', icon: 'mdi-language-php', color: '#777BB3' },
       { title: 'Laravel', icon: 'mdi-laravel', color: '#EA4D39' },
       { title: 'Symfony', icon: 'mdi-symfony', color: '#000000' },
