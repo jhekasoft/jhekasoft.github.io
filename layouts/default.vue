@@ -71,7 +71,7 @@
         <v-icon>mdi-telegram</v-icon>
       </v-btn>
       <v-btn icon :href="about.gitHubUrl" target="_blank" title="GitHub">
-        <v-icon>mdi-github-circle</v-icon>
+        <v-icon>mdi-github</v-icon>
       </v-btn>
     </v-app-bar>
     <v-content>
