@@ -13,8 +13,7 @@ export default {
   }),
   head() {
     return {
-      title: 'Contact',
-      titleTemplate: null
+      title: 'Contact'
     }
   }
 }
