@@ -2,7 +2,7 @@
 
 **New site:** https://efremov.dev.
 
-Read this site: https://jhekasoft.github.io/timeline
+Read this site: https://jhekasoft.github.io/timeline.
 
 **This directory is not required, you can delete it if you don't want to use it.**
 
