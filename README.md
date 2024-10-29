@@ -2,7 +2,9 @@
 
 ## Prepare
 
-Start [Jhekasoft API](https://github.com/jhekasoft/jhekasoft-api).
+Start [e-backend](https://github.com/jhekasoft/e-backend) (module `cv`).
+
+Deprecated alternative: ~~[Jhekasoft API](https://github.com/jhekasoft/jhekasoft-api)~~.
 
 ## How to use
 
