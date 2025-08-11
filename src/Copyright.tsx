@@ -6,8 +6,8 @@ export default function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary">
       © 2013-{new Date().getFullYear()}{' '}
-      <MuiLink color="inherit" href="https://efremov.dev/">
-        efremov.dev
+      <MuiLink color="inherit" href="https://jhekasoft.github.io/">
+        Jhekasoft
       </MuiLink>
     </Typography>
   );

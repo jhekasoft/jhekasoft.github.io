@@ -5,8 +5,8 @@ module.exports = {
     loader: 'custom'
   },
   env: {
-    baseUrl: 'https://efremov.dev',
-    baseTitle: 'efremov.dev',
+    baseUrl: 'https://jhekasoft.github.io',
+    baseTitle: 'jhekasoft',
     googleTagId: 'GTM-PDXCN6D'
   }
 };
