@@ -4,7 +4,7 @@ import * as Icon from '../src/icon';
 function TechChip({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gray-300 dark:border-gray-600 text-sm m-1 bg-white dark:bg-gray-800">
-      <span className="w-4 h-4 flex-shrink-0">{icon}</span>
+      <span className="w-4 h-4 flex-shrink-0 overflow-hidden [&>svg]:w-full [&>svg]:h-full">{icon}</span>
       {label}
     </span>
   );
