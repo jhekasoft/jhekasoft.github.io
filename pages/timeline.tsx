@@ -1,16 +1,5 @@
 import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Head from 'next/head';
-import Timeline from '@mui/lab/Timeline'
-import TimelineItem from '@mui/lab/TimelineItem'
-import TimelineSeparator from '@mui/lab/TimelineSeparator'
-import TimelineConnector from '@mui/lab/TimelineConnector'
-import TimelineContent from '@mui/lab/TimelineContent'
-import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent'
-import TimelineDot from '@mui/lab/TimelineDot'
 import { fetchDeveloperTimeline } from '../src/api';
 import { TimelineItem as TimelineItm } from '../src/api/types';
 
@@ -19,17 +8,16 @@ interface StaticPropsProps {
 }
 
 interface StaticProps {
-  props: StaticPropsProps
+  props: StaticPropsProps;
 }
 
 export async function getStaticProps(): Promise<StaticProps> {
   const data = await fetchDeveloperTimeline();
-
   return {
     props: {
       timelineItems: data.data,
     },
-  }
+  };
 }
 
 export default function TimelineApp(props: StaticPropsProps) {
@@ -37,45 +25,44 @@ export default function TimelineApp(props: StaticPropsProps) {
 
   return (
     <>
-    <Head>
-      <title>{title}</title>
-      <meta property="og:title" content={title} key="title" />
-    </Head>
-    <Container>
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Developer timeline
-        </Typography>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} key="title" />
+      </Head>
+      <div className="container mx-auto px-4">
+        <div className="my-8">
+          <h1 className="text-3xl font-bold mb-6">Developer timeline</h1>
 
-        <Timeline position="alternate">
-          { props.timelineItems.map((item, i) => (
-            <TimelineItem key={i}>
-              <TimelineOppositeContent>
-                <Typography variant="body2" color="textSecondary">
-                  {item.year}
-                </Typography>
-              </TimelineOppositeContent>
-              <TimelineSeparator>
-                <TimelineDot color="primary" />
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent>
-                <Paper elevation={3} sx={{ padding: '6px 16px' }}>
-                  {item.desc.map((descItem, j) => (
-                    <Typography key={j}>
-                      <span dangerouslySetInnerHTML={{ __html: descItem.replace(
-                        /\*\*(\S(.*?\S)?)\*\*/gm,
-                        '<i>$1</i>'
-                      ) }}></span>
-                    </Typography>
-                  ))}
-                </Paper>
-              </TimelineContent>
-            </TimelineItem>
-          )) }
-        </Timeline>
-      </Box>
-    </Container>
+          <div className="relative">
+            <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-teal-500 -translate-x-1/2" />
+            {props.timelineItems.map((item, i) => {
+              const isLeft = i % 2 === 0;
+              return (
+                <div key={i} className={`flex mb-8 items-start ${isLeft ? 'flex-row-reverse' : 'flex-row'}`}>
+                  <div className={`w-[calc(50%-1.5rem)] ${isLeft ? 'text-right pr-4' : 'pl-4'}`}>
+                    <div className="inline-block bg-white dark:bg-gray-800 rounded shadow p-3 text-left">
+                      {item.desc.map((descItem, j) => (
+                        <p key={j} dangerouslySetInnerHTML={{
+                          __html: descItem.replace(
+                            /\*\*(\S(.*?\S)?)\*\*/gm,
+                            '<i>$1</i>'
+                          )
+                        }} />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center z-10">
+                    <div className="w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 mt-1" />
+                  </div>
+                  <div className={`w-[calc(50%-1.5rem)] ${isLeft ? 'pl-4' : 'pr-4 text-right'}`}>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{item.year}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </>
   );
 }

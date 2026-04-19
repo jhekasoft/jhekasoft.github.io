@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  output: 'export',
   images: {
-    loader: 'custom'
+    unoptimized: true
   },
   env: {
     baseUrl: 'https://jhekasoft.github.io',

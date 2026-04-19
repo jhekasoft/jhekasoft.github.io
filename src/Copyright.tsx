@@ -1,14 +1,12 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import MuiLink from '@mui/material/Link';
 
 export default function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary">
-      © 2013-{new Date().getFullYear()}{' '}
-      <MuiLink color="inherit" href="https://jhekasoft.github.io/">
+    <p className="text-sm text-gray-500 dark:text-gray-400">
+      &copy; 2013-{new Date().getFullYear()}{' '}
+      <a href="https://jhekasoft.github.io/" className="hover:underline">
         Jhekasoft
-      </MuiLink>
-    </Typography>
+      </a>
+    </p>
   );
 }

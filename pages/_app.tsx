@@ -1,226 +1,227 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-import { ThemeProvider, Theme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
-import Drawer from '@mui/material/Drawer';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import MenuIcon from '@mui/icons-material/Menu';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import { CacheProvider, EmotionCache } from '@emotion/react';
-import { lightTheme, darkTheme } from '../src/theme';
-import createEmotionCache from '../src/createEmotionCache';
+import { Menu, Sun, Moon, X } from 'lucide-react';
+import { GitHubIcon, TelegramIcon } from '../src/BrandIcons';
 import Copyright from '../src/Copyright';
 import Link from '../src/Link';
 import TagManager from 'react-gtm-module';
-import { ListItemButton } from '@mui/material';
 import { useRouter } from 'next/router';
+import '../styles/globals.css';
 
 const themeModeKey = 'themeMode';
 
-// Client-side cache, shared for the whole session of the user in the browser.
-const clientSideEmotionCache = createEmotionCache();
-
-// const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
-
-function getTheme(themeMode: string): Theme {
-  return themeMode === 'light' ? lightTheme : darkTheme;
-}
-
 function readThemeMode(): string {
   const themeMode = localStorage.getItem(themeModeKey);
-  return themeMode == 'light' ? 'light' : 'dark';
+  return themeMode === 'light' ? 'light' : 'dark';
 }
 
-function writeThemeMode(mode: string) {
-  const themeMode = mode == 'light' ? 'light' : 'dark';
+function writeThemeMode(mode: string): string {
+  const themeMode = mode === 'light' ? 'light' : 'dark';
   localStorage.setItem(themeModeKey, themeMode);
   return themeMode;
 }
 
-interface MyAppProps extends AppProps {
-  emotionCache?: EmotionCache;
-}
+const menuList = [
+  { title: 'Experience', url: '/experience' },
+  { title: 'Timeline', url: '/timeline' },
+  { title: 'Publications', url: '/publications' },
+  { title: 'Projects', url: '/projects' },
+  { title: 'Contact', url: '/contact' },
+];
 
-export default function MyApp(props: MyAppProps) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-
-  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  // const themeMode = prefersDarkMode ? 'dark' : 'light';
-
-  const [state, setState] = React.useState({
-    open: false,
-    themeMode: 'dark'
-  });
-
-  function toggleColorMode() {
-    const themeMode = state.themeMode == 'light' ? 'dark' : 'light';
-    setState((state) => ({ ...state, themeMode }))
-    writeThemeMode(themeMode);
-  };
-
-  const toggleDrawer =
-  (open: boolean) =>
-  (event: React.KeyboardEvent | React.MouseEvent) => {
-    if (
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-        (event as React.KeyboardEvent).key === 'Shift')
-    ) {
-      return;
-    }
-
-    setState({ ...state, open: open });
-  };
-
-  const menuList = [
-    {title: "Experience", url: "/experience"},
-    {title: "Timeline", url: "/timeline"},
-    {title: "Publications", url: "/publications"},
-    {title: "Projects", url: "/projects"},
-    {title: "Contact", url: "/contact"}
-  ];
+export default function MyApp({ Component, pageProps }: AppProps) {
+  const [themeMode, setThemeMode] = React.useState<string>('dark');
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const router = useRouter();
 
   React.useEffect(() => {
-    const themeMode = readThemeMode();
-    setState((state) => ({ ...state, themeMode }))
+    const mode = readThemeMode();
+    setThemeMode(mode);
+    if (mode === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
 
-    // Google Tag
-    if (process.env.googleTagId ) {
+    if (process.env.googleTagId) {
       TagManager.initialize({ gtmId: process.env.googleTagId || '' });
     }
   }, []);
 
+  function toggleColorMode() {
+    const next = themeMode === 'light' ? 'dark' : 'light';
+    setThemeMode(next);
+    writeThemeMode(next);
+    if (next === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }
+
+  function closeDrawer(e: React.KeyboardEvent | React.MouseEvent) {
+    if (
+      e.type === 'keydown' &&
+      ((e as React.KeyboardEvent).key === 'Tab' || (e as React.KeyboardEvent).key === 'Shift')
+    ) return;
+    setDrawerOpen(false);
+  }
+
   return (
-    <CacheProvider value={emotionCache}>
+    <>
       <Head>
         <title>{process.env.baseTitle}</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <meta property="og:title" key="title" content={process.env.baseTitle} />
         <meta property="og:description" key="description" content="Software engineer. 🧑‍💻 Kyiv, Ukraine. 🇺🇦 Golang, TypeScript, Node.js" />
-        <meta property="og:url" content={process.env.baseUrl + useRouter().asPath} />
+        <meta property="og:url" content={process.env.baseUrl + router.asPath} />
         <meta property="og:site_name" content={process.env.baseTitle} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" key="image" content={process.env.baseUrl + "/cover.jpg"} />
+        <meta property="og:image" key="image" content={process.env.baseUrl + '/cover.jpg'} />
         <meta property="og:locale" content="en_US" />
       </Head>
-      <ThemeProvider theme={getTheme(state.themeMode)}>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '100vh',
-          }}
-        >
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Drawer
-            anchor="left"
-            open={state.open}
-            onClose={toggleDrawer(false)}
-          >
-            <Box
-              sx={{ width: 250 }}
-              role="presentation"
-              onClick={toggleDrawer(false)}
-              onKeyDown={toggleDrawer(false)}
-            >
-              <List>
-                <ListItemButton component={Link} href="/">
-                  <ListItemText primary="Main" />
-                </ListItemButton>
-                {menuList.map((item, index) => (
-                  <ListItemButton key={'drawer-menu-' + index} component={Link} href={item.url}>
-                    <ListItemText primary={item.title} />
-                  </ListItemButton>
-                ))}
-              </List>
-            </Box>
-          </Drawer>
-          <AppBar 
-            color="primary"
-            enableColorOnDark
-            sx={{backdropFilter:"blur(8px)", backgroundColor: "rgba(0, 121, 107, 0.7)"}} // Header's blur
-          >
-            <Toolbar variant="dense">
-              <IconButton edge="start" color="inherit" aria-label="menu"
-                onClick={toggleDrawer(true)}
-                sx={{ display: { sm: 'inline-flex', md: 'none' }, mr: 2 }}
-              >
-                <MenuIcon />
-              </IconButton>
-              <IconButton component={Link} href="/" edge="start" color="inherit"
-                sx={{ display: { xs: 'none', sm: 'none', md: 'inline-flex' } }}
-              >
-                <Avatar 
-                    alt="Eugene Efremov"
-                    src="https://avatars2.githubusercontent.com/u/1534306?s=460&v=4"
-                    sx={{ width: 24, height: 24 }}
-                />
-              </IconButton>
-              <Box>
-                <Typography variant="h6" color="inherit" component={Link} href="/" sx={{ textDecoration: 'none' }}>
-                  {process.env.baseTitle}
-                </Typography>
-              </Box>
-              <Box sx={{ flexGrow: 1 }} />
-              <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
-                {menuList.map((item, index) => (
-                  <Button key={'top-menu-' + index} component={Link} href={item.url} color="inherit">
-                    {item.title}
-                  </Button>
-                ))}
-              </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', width: 'fit-content' }}>
-                <Divider orientation="vertical" flexItem />
-                <IconButton aria-label="Dark/Light mode" color="inherit"
-                  onClick={toggleColorMode} title="Dark/Light mode">
-                  {state.themeMode === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
-                </IconButton>
-                <Divider orientation="vertical" flexItem />
-                <IconButton aria-label="Telegram" color="inherit"
-                  href="https://t.me/jhekasoft" target="__blank" title="Telegram">
-                  <TelegramIcon />
-                </IconButton>
-                <IconButton aria-label="GitHub" color="inherit"
-                  href="https://github.com/jhekasoft" target="__blank" title="GitHub">
-                  <GitHubIcon />
-                </IconButton>
-              </Box>
-            </Toolbar>
-          </AppBar>
 
-          <Toolbar variant="dense"></Toolbar> {/* For AppBar margin */}
+      <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+        {/* Drawer overlay */}
+        {drawerOpen && (
+          <div
+            className="fixed inset-0 z-40 bg-black/50"
+            onClick={closeDrawer}
+            onKeyDown={closeDrawer}
+          />
+        )}
+
+        {/* Drawer */}
+        <div
+          className={`fixed left-0 top-0 h-full w-64 z-50 bg-white dark:bg-gray-900 shadow-xl transform transition-transform duration-200 ${
+            drawerOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+          role="presentation"
+          onClick={closeDrawer}
+          onKeyDown={closeDrawer}
+        >
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+            <span className="font-semibold">{process.env.baseTitle}</span>
+            <button onClick={closeDrawer} className="p-1">
+              <X size={20} />
+            </button>
+          </div>
+          <nav className="flex flex-col">
+            <Link
+              href="/"
+              className="px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              activeClassName="bg-gray-100 dark:bg-gray-800 font-semibold"
+            >
+              Main
+            </Link>
+            {menuList.map((item, i) => (
+              <Link
+                key={i}
+                href={item.url}
+                className="px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                activeClassName="bg-gray-100 dark:bg-gray-800 font-semibold"
+              >
+                {item.title}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* AppBar */}
+        <header className="fixed top-0 left-0 right-0 z-30 backdrop-blur-md bg-teal-600/80 dark:bg-teal-800/80 text-white shadow">
+          <div className="flex items-center h-10 px-2 gap-1">
+            {/* Hamburger — mobile only */}
+            <button
+              className="md:hidden p-1.5 rounded hover:bg-white/10 transition-colors"
+              aria-label="menu"
+              onClick={() => setDrawerOpen(true)}
+            >
+              <Menu size={20} />
+            </button>
+
+            {/* Avatar link — desktop only */}
+            <Link href="/" className="hidden md:flex items-center p-1 rounded hover:bg-white/10 transition-colors">
+              <img
+                alt="Eugene Efremov"
+                src="https://avatars2.githubusercontent.com/u/1534306?s=460&v=4"
+                className="w-6 h-6 rounded-full"
+              />
+            </Link>
+
+            {/* Site title */}
+            <Link href="/" className="font-semibold text-base hover:opacity-90 px-1">
+              {process.env.baseTitle}
+            </Link>
+
+            {/* Spacer */}
+            <div className="flex-1" />
+
+            {/* Desktop nav links */}
+            <nav className="hidden md:flex items-center gap-0.5">
+              {menuList.map((item, i) => (
+                <Link
+                  key={i}
+                  href={item.url}
+                  className="px-3 py-1.5 rounded text-sm hover:bg-white/10 transition-colors"
+                  activeClassName="bg-white/20 font-semibold"
+                >
+                  {item.title}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Divider */}
+            <div className="h-5 w-px bg-white/30 mx-1" />
+
+            {/* Theme toggle */}
+            <button
+              aria-label="Toggle dark/light mode"
+              title="Dark/Light mode"
+              onClick={toggleColorMode}
+              className="p-1.5 rounded hover:bg-white/10 transition-colors"
+            >
+              {themeMode === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+
+            {/* Divider */}
+            <div className="h-5 w-px bg-white/30 mx-1" />
+
+            {/* Social links */}
+            <a
+              href="https://t.me/jhekasoft"
+              target="_blank"
+              rel="noreferrer"
+              title="Telegram"
+              className="p-1.5 rounded hover:bg-white/10 transition-colors"
+            >
+              <TelegramIcon size={18} />
+            </a>
+            <a
+              href="https://github.com/jhekasoft"
+              target="_blank"
+              rel="noreferrer"
+              title="GitHub"
+              className="p-1.5 rounded hover:bg-white/10 transition-colors"
+            >
+              <GitHubIcon size={18} />
+            </a>
+          </div>
+        </header>
+
+        {/* AppBar spacer */}
+        <div className="h-10" />
+
+        {/* Page content */}
+        <main className="flex-1">
           <Component {...pageProps} />
-          <Box
-            component="footer"
-            sx={{
-              py: 1,
-              px: 2,
-              mt: 'auto',
-              backgroundColor: (theme) => theme.palette.action.selected
-                // theme.palette.mode === 'light'
-                //   ? theme.palette.grey[200]
-                //   : theme.palette.grey[800],
-            }}
-          >
-            <Copyright />
-          </Box>
-        </Box>
-      </ThemeProvider>
-    </CacheProvider>
+        </main>
+
+        {/* Footer */}
+        <footer className="py-2 px-4 mt-auto bg-gray-100 dark:bg-gray-800">
+          <Copyright />
+        </footer>
+      </div>
+    </>
   );
 }

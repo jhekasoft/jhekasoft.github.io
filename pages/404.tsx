@@ -1,23 +1,18 @@
-
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Link from "next/link";
+import * as React from 'react';
+import Link from 'next/link';
 
 export default function Custom404() {
   return (
-    <Container>
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          404 - Page Not Found
-        </Typography>
-        <Link href="/" passHref>
-          <Button variant="contained" color="primary" component="a">
-            Home
-          </Button>
+    <div className="container mx-auto px-4">
+      <div className="my-8">
+        <h1 className="text-3xl font-bold mb-6">404 - Page Not Found</h1>
+        <Link
+          href="/"
+          className="inline-block px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded transition-colors"
+        >
+          Home
         </Link>
-      </Box>
-    </Container>
-  )
+      </div>
+    </div>
+  );
 }

@@ -1,16 +1,5 @@
 import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Head from 'next/head';
-import Timeline from '@mui/lab/Timeline'
-import TimelineItem from '@mui/lab/TimelineItem'
-import TimelineSeparator from '@mui/lab/TimelineSeparator'
-import TimelineConnector from '@mui/lab/TimelineConnector'
-import TimelineContent from '@mui/lab/TimelineContent'
-import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent'
-import TimelineDot from '@mui/lab/TimelineDot'
 import { fetchCv } from '../src/api';
 import { CvEducationItem, CvExperienceItem } from '../src/api/types';
 
@@ -20,18 +9,42 @@ interface StaticPropsProps {
 }
 
 interface StaticProps {
-  props: StaticPropsProps
+  props: StaticPropsProps;
 }
 
 export async function getStaticProps(): Promise<StaticProps> {
   const data = await fetchCv();
-
   return {
     props: {
       experienceItems: data.data.experience,
       educationItems: data.data.education,
     },
-  }
+  };
+}
+
+function TimelineSection({ items, renderContent }: {
+  items: (CvExperienceItem | CvEducationItem)[];
+  renderContent: (item: CvExperienceItem | CvEducationItem) => React.ReactNode;
+}) {
+  return (
+    <div className="relative my-6">
+      <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-teal-500 -translate-x-1/2" />
+      {items.map((item, i) => {
+        const isLeft = i % 2 === 0;
+        return (
+          <div key={i} className={`flex mb-8 items-center ${isLeft ? 'flex-row-reverse' : 'flex-row'}`}>
+            <div className={`w-[calc(50%-1.5rem)] ${isLeft ? 'text-right pr-4' : 'pl-4'}`}>
+              <div className="inline-block bg-white dark:bg-gray-800 rounded shadow p-3 text-left">
+                {renderContent(item)}
+              </div>
+            </div>
+            <div className="w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 z-10" />
+            <div className="w-[calc(50%-1.5rem)]" />
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default function Experience(props: StaticPropsProps) {
@@ -39,78 +52,58 @@ export default function Experience(props: StaticPropsProps) {
 
   return (
     <>
-    <Head>
-      <title>{title}</title>
-      <meta property="og:title" content={title} key="title" />
-    </Head>
-    <Container>
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Experience
-        </Typography>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} key="title" />
+      </Head>
+      <div className="container mx-auto px-4">
+        <div className="my-8">
+          <h1 className="text-3xl font-bold mb-6">Experience</h1>
 
-        <Timeline position="alternate">
-          { props.experienceItems.map((item, i) => (
-            <TimelineItem key={i}>
-              <TimelineOppositeContent>
-                <Typography variant="body2" color="textSecondary">
-                  {item.startYear}
-                  {item.startYear != item.endYear &&
-                    <> – {item.endYear ? item.endYear : "present"}</>
-                  }
-                </Typography>
-              </TimelineOppositeContent>
-              <TimelineSeparator>
-                <TimelineDot color="primary" />
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent>
-                <Paper elevation={3} sx={{ padding: '6px 16px' }}>
-                  <Typography variant="h6" component="h1">
-                    {item.company}
-                  </Typography>
-                  <Typography>{item.title}</Typography>
-                  <Typography color="textSecondary">{item.location}</Typography>
-                </Paper>
-              </TimelineContent>
-            </TimelineItem>
-          )) }
-        </Timeline>
+          <TimelineSection
+            items={props.experienceItems}
+            renderContent={(item) => {
+              const exp = item as CvExperienceItem;
+              return (
+                <>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                    {exp.startYear}
+                    {exp.startYear !== exp.endYear && (
+                      <> &ndash; {exp.endYear ? exp.endYear : 'present'}</>
+                    )}
+                  </p>
+                  <h3 className="font-semibold">{exp.company}</h3>
+                  <p className="text-sm">{exp.title}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{exp.location}</p>
+                </>
+              );
+            }}
+          />
 
-        <Typography variant="h5" component="h4" gutterBottom align="center">
-          Education
-        </Typography>
+          <h2 className="text-xl font-semibold text-center mt-8 mb-2">Education</h2>
 
-        <Timeline position="alternate">
-          { props.educationItems.map((item, i) => (
-            <TimelineItem key={i}>
-              <TimelineOppositeContent>
-                <Typography variant="body2" color="textSecondary">
-                  {item.startYear}
-                  {item.startYear != item.endYear &&
-                    <> – {item.endYear ? item.endYear : "present"}</>
-                  }
-                </Typography>
-              </TimelineOppositeContent>
-              <TimelineSeparator>
-                <TimelineDot color="primary" />
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent>
-                <Paper elevation={3} sx={{ padding: '6px 16px' }}>
-                  <Typography variant="h6" component="h1">
-                    {item.school}
-                  </Typography>
-                  <Typography>{item.degree}</Typography>
-                  <Typography>{item.fieldOfStudy}</Typography>
-                  <Typography color="textSecondary">{item.location}</Typography>
-                </Paper>
-              </TimelineContent>
-            </TimelineItem>
-          )) }
-        </Timeline>
-      </Box>
-    </Container>
+          <TimelineSection
+            items={props.educationItems}
+            renderContent={(item) => {
+              const edu = item as CvEducationItem;
+              return (
+                <>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                    {edu.startYear}
+                    {edu.startYear !== edu.endYear && (
+                      <> &ndash; {edu.endYear ? edu.endYear : 'present'}</>
+                    )}
+                  </p>
+                  <h3 className="font-semibold">{edu.school}</h3>
+                  <p className="text-sm">{edu.degree}</p>
+                  <p className="text-sm">{edu.fieldOfStudy}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{edu.location}</p>
+                </>
+              );
+            }}
+          />
+        </div>
+      </div>
     </>
   );
 }

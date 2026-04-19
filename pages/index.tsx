@@ -1,130 +1,53 @@
 import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import SvgIcon from '@mui/material/SvgIcon';
 import * as Icon from '../src/icon';
+
+function TechChip({ icon, label }: { icon: React.ReactNode; label: string }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gray-300 dark:border-gray-600 text-sm m-1 bg-white dark:bg-gray-800">
+      <span className="w-4 h-4 flex-shrink-0">{icon}</span>
+      {label}
+    </span>
+  );
+}
 
 export default function Index() {
   return (
-    <Container>
-      <Box sx={{ my: 4, display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center' }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Eugene Efremov
-        </Typography>
-        <Avatar
+    <div className="container mx-auto px-4">
+      <div className="my-8 flex flex-col items-center">
+        <h1 className="text-3xl font-bold mb-4">Eugene Efremov</h1>
+        <img
           alt="Eugene Efremov"
           src="https://avatars2.githubusercontent.com/u/1534306?s=460&v=4"
-          sx={{ width: "20rem", height: "20rem", mb: 2 }}
+          className="rounded-full w-80 h-80 mb-4 object-cover"
         />
-        <Typography sx={{ mb: 4 }}>Software engineer. Kyiv, Ukraine. 🇺🇦</Typography>
+        <p className="mb-8">Software engineer. Kyiv, Ukraine. 🇺🇦</p>
 
-        <Typography sx={{ mb: 2 }}>Technology stack:</Typography>
-        <Box sx={{ textAlign: "center", mb: 4 }}>
-          <Chip
-            icon={<SvgIcon><Icon.GolangIcon /></SvgIcon>}
-            label="Go"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.TypeScriptIcon /></SvgIcon>}
-            label="TypeScript"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.JavaScriptIcon /></SvgIcon>}
-            label="JavaScript"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.NodeJsIcon /></SvgIcon>}
-            label="Node.js"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.NestJsIcon /></SvgIcon>}
-            label="NestJS"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.NextJsIcon /></SvgIcon>}
-            label="Next.js"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.PostgreSqlIcon /></SvgIcon>}
-            label="PostgreSQL"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.RedisIcon /></SvgIcon>}
-            label="Redis"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.MqttIcon /></SvgIcon>}
-            label="MQTT"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.GnuLinuxIcon /></SvgIcon>}
-            label="GNU/Linux"
-            sx={{ mb: 1 }}
-          />
-          {/* <Chip
-            icon={<TelegramIcon sx={{ "&&": { color: "#49ACD7" } }} />}
-            label="Go"
-          /> */}
-        </Box>
+        <p className="mb-3">Technology stack:</p>
+        <div className="text-center mb-8">
+          <TechChip icon={<Icon.GolangIcon />} label="Go" />
+          <TechChip icon={<Icon.TypeScriptIcon />} label="TypeScript" />
+          <TechChip icon={<Icon.JavaScriptIcon />} label="JavaScript" />
+          <TechChip icon={<Icon.NodeJsIcon />} label="Node.js" />
+          <TechChip icon={<Icon.NestJsIcon />} label="NestJS" />
+          <TechChip icon={<Icon.NextJsIcon />} label="Next.js" />
+          <TechChip icon={<Icon.PostgreSqlIcon />} label="PostgreSQL" />
+          <TechChip icon={<Icon.RedisIcon />} label="Redis" />
+          <TechChip icon={<Icon.MqttIcon />} label="MQTT" />
+          <TechChip icon={<Icon.GnuLinuxIcon />} label="GNU/Linux" />
+        </div>
 
-        <Typography sx={{ mb: 2 }}>Legacy:</Typography>
-        <Box sx={{ textAlign: "center" }}>
-          <Chip
-            icon={<SvgIcon><Icon.ScalaIcon /></SvgIcon>}
-            label="Scala"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.FlutterIcon /></SvgIcon>}
-            label="Flutter"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.CIcon /></SvgIcon>}
-            label="C"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.CPlusPlusIcon /></SvgIcon>}
-            label="C++"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.LuaIcon /></SvgIcon>}
-            label="Lua"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.PythonIcon /></SvgIcon>}
-            label="Python"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.PhpIcon /></SvgIcon>}
-            label="PHP"
-            sx={{ mb: 1 }}
-          />&nbsp;
-          <Chip
-            icon={<SvgIcon><Icon.JavaIcon /></SvgIcon>}
-            label="Java"
-            sx={{ mb: 1 }}
-          />&nbsp;
-        </Box>
-      </Box>
-    </Container>
+        <p className="mb-3">Legacy:</p>
+        <div className="text-center">
+          <TechChip icon={<Icon.ScalaIcon />} label="Scala" />
+          <TechChip icon={<Icon.FlutterIcon />} label="Flutter" />
+          <TechChip icon={<Icon.CIcon />} label="C" />
+          <TechChip icon={<Icon.CPlusPlusIcon />} label="C++" />
+          <TechChip icon={<Icon.LuaIcon />} label="Lua" />
+          <TechChip icon={<Icon.PythonIcon />} label="Python" />
+          <TechChip icon={<Icon.PhpIcon />} label="PHP" />
+          <TechChip icon={<Icon.JavaIcon />} label="Java" />
+        </div>
+      </div>
+    </div>
   );
 }
