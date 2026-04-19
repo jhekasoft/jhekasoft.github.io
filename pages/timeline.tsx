@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Head from 'next/head';
 import { fetchDeveloperTimeline } from '../src/api';
 import { TimelineItem as TimelineItm } from '../src/api/types';
@@ -26,18 +25,7 @@ export default function TimelineApp(props: StaticPropsProps) {
 
   const entries = props.timelineItems.map((item) => ({
     year: item.year,
-    content: (
-      <div className="space-y-1.5 text-sm text-gray-700 dark:text-gray-300">
-        {item.desc.map((descItem, j) => (
-          <p
-            key={j}
-            dangerouslySetInnerHTML={{
-              __html: descItem.replace(/\*\*(\S(.*?\S)?)\*\*/gm, '<i>$1</i>'),
-            }}
-          />
-        ))}
-      </div>
-    ),
+    lines: item.desc,
   }));
 
   return (

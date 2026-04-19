@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Head from 'next/head';
 import { fetchCv } from '../src/api';
 import { CvEducationItem, CvExperienceItem } from '../src/api/types';
@@ -23,39 +22,24 @@ export async function getStaticProps(): Promise<StaticProps> {
   };
 }
 
-function yearRange(start: number, end: number): React.ReactNode {
-  if (start === end) return start;
-  return (
-    <>
-      {start} – {end || 'present'}
-    </>
-  );
-}
-
 export default function Experience(props: StaticPropsProps) {
   const title = `Experience | ${process.env.baseTitle}`;
 
   const experience = props.experienceItems.map((exp) => ({
-    year: yearRange(exp.startYear, exp.endYear),
-    content: (
-      <>
-        <h3 className="font-semibold text-base text-gray-900 dark:text-gray-100">{exp.company}</h3>
-        <p className="text-sm text-gray-700 dark:text-gray-300 mt-0.5">{exp.title}</p>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{exp.location}</p>
-      </>
-    ),
+    year: exp.startYear,
+    yearEnd: exp.endYear,
+    heading: exp.company,
+    subheading: exp.title,
+    location: exp.location,
   }));
 
   const education = props.educationItems.map((edu) => ({
-    year: yearRange(edu.startYear, edu.endYear),
-    content: (
-      <>
-        <h3 className="font-semibold text-base text-gray-900 dark:text-gray-100">{edu.school}</h3>
-        <p className="text-sm text-gray-700 dark:text-gray-300 mt-0.5">{edu.degree}</p>
-        <p className="text-sm text-gray-600 dark:text-gray-400">{edu.fieldOfStudy}</p>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{edu.location}</p>
-      </>
-    ),
+    year: edu.startYear,
+    yearEnd: edu.endYear,
+    heading: edu.school,
+    subheading: edu.degree,
+    detail: edu.fieldOfStudy,
+    location: edu.location,
   }));
 
   return (
