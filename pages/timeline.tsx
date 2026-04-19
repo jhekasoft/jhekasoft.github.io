@@ -48,7 +48,7 @@ export default function TimelineApp(props: StaticPropsProps) {
       </Head>
       <div className="container mx-auto px-4">
         <div className="my-8">
-          <h1 className="text-3xl font-bold mb-8 text-center">Developer timeline</h1>
+          <h1 className="text-3xl font-bold mb-8 md:text-center">Developer timeline</h1>
           <Timeline items={entries} />
         </div>
       </div>

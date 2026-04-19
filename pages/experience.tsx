@@ -66,10 +66,10 @@ export default function Experience(props: StaticPropsProps) {
       </Head>
       <div className="container mx-auto px-4">
         <div className="my-8">
-          <h1 className="text-3xl font-bold mb-8 text-center">Experience</h1>
+          <h1 className="text-3xl font-bold mb-8 md:text-center">Experience</h1>
           <Timeline items={experience} />
 
-          <h2 className="text-2xl font-bold mt-12 mb-8 text-center">Education</h2>
+          <h2 className="text-2xl font-bold mt-12 mb-8 md:text-center">Education</h2>
           <Timeline items={education} />
         </div>
       </div>
