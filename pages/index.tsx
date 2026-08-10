@@ -28,16 +28,17 @@ export default function Index() {
           <TechChip icon={<Icon.TypeScriptIcon />} label="TypeScript" />
           <TechChip icon={<Icon.JavaScriptIcon />} label="JavaScript" />
           <TechChip icon={<Icon.NodeJsIcon />} label="Node.js" />
-          <TechChip icon={<Icon.NestJsIcon />} label="NestJS" />
           <TechChip icon={<Icon.NextJsIcon />} label="Next.js" />
           <TechChip icon={<Icon.PostgreSqlIcon />} label="PostgreSQL" />
           <TechChip icon={<Icon.RedisIcon />} label="Redis" />
           <TechChip icon={<Icon.MqttIcon />} label="MQTT" />
           <TechChip icon={<Icon.GnuLinuxIcon />} label="GNU/Linux" />
+          <TechChip icon={<Icon.ClaudeIcon />} label="Claude Code" />
         </div>
 
         <p className="mb-3">Legacy:</p>
         <div className="text-center">
+          <TechChip icon={<Icon.NestJsIcon />} label="NestJS" />
           <TechChip icon={<Icon.ScalaIcon />} label="Scala" />
           <TechChip icon={<Icon.FlutterIcon />} label="Flutter" />
           <TechChip icon={<Icon.CIcon />} label="C" />
